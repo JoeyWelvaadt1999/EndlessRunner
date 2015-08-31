@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
 		Destroy (this.GetComponent<PolygonCollider2D> ());
 		this.gameObject.AddComponent<PolygonCollider2D> ();
 
@@ -31,6 +32,8 @@ public class Player : MonoBehaviour {
 			speed = 0.0f;
 			gravity = 1.2f;
 		}
+=======
+>>>>>>> origin/master
 
 	}
 }
