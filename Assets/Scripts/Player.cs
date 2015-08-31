@@ -4,10 +4,10 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	private Vector3 spawnPos = new Vector3(0,Screen.width / 2,0);
-	private float gravity = 1.2;
-	private float curGravity = 0.0;
+	private float gravity = 1.2f;
+	private float curGravity = 0.0f;
 	private bool isGrounded = false;
-	private double speed = 0;
+	private float speed = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -19,13 +19,17 @@ public class Player : MonoBehaviour {
 		Destroy (this.GetComponent<PolygonCollider2D> ());
 		this.gameObject.AddComponent<PolygonCollider2D> ();
 
+		Vector3 tPos = transform.position;
+
 		if (!isGrounded) {
-			speed += gravity;
-			gravity += 0.1;
-			transform.position.y += speed;
+			curGravity = gravity + curGravity;
+			speed += curGravity;
+			curGravity += 0.1f;
+			tPos.y += speed;
+			transform.position = tPos;
 		} else {
-			speed = 0;
-			gravity = 1.2;
+			speed = 0.0f;
+			gravity = 1.2f;
 		}
 
 	}
