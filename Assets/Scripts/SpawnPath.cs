@@ -8,7 +8,7 @@ public class SpawnPath : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log(Screen.width);
+
 		screenSize = Camera.main.ViewportToWorldPoint(new Vector2(1.0f, 1.0f));
 	}
 	
@@ -18,11 +18,8 @@ public class SpawnPath : MonoBehaviour {
 	}
 
 	void SpawnBlocks() {
-		if(totalSpawnedBlocks < 40) {
-			Instantiate(blockPrefab, new Vector2((screenSize.x * -1) + (1*totalSpawnedBlocks),(screenSize.x * -0.45f)), Quaternion.identity);
-			Instantiate(blockPrefab, new Vector2((screenSize.x * -1) + (1*totalSpawnedBlocks),(screenSize.x * 0.45f)), new Quaternion(0,0,180, 0));
-			DestroyPath.blocks.Enqueue(blockPrefab);
-		}
-		totalSpawnedBlocks+=1;
+		Instantiate(blockPrefab, new Vector2((screenSize.x * -1) + (1*totalSpawnedBlocks),(screenSize.x * -0.45f)), Quaternion.identity);
+		Instantiate(blockPrefab, new Vector2((screenSize.x * -1) + (1*totalSpawnedBlocks),(screenSize.x * 0.45f)), new Quaternion(0,0,180, 0));
+		totalSpawnedBlocks++;
 	}
 }
