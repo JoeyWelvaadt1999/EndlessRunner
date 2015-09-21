@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 public class PlayMovie : MonoBehaviour {
 	MovieTexture mtex;
 	bool playing = true;
@@ -20,9 +19,7 @@ public class PlayMovie : MonoBehaviour {
 		{
 
 		} else {
-
-				Application.LoadLevel(1);
-
+			AutoFade.LoadLevel(1,0,1,Color.black);
 		}
 	}
 }
