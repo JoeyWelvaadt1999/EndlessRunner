@@ -1,72 +1,85 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
-	private bool isGrounded = false;
-	private int movementSpeed = 7;
-	private Rigidbody2D rb2d;
-
-	[SerializeField]private GameObject bulletPrefab,nozzle;
-	[SerializeField]private List<GameObject> hearts = new List<GameObject>();
+	bool jump = false;
+	bool isGrounded = false;
+	bool getPoints = false;
+	AudioSource asrc;
 	Animator anim;
+	Rigidbody2D rb2d;
+	Vector3 spawnPos;
+	private int multiplier = 1;
+	private int score = 0;
+	private float jumpStrength = 3f;
+	private float movementSpeed = 5;
+	[SerializeField]private Text multiplierText;
+	[SerializeField]private Text scoreText;
+	[SerializeField]private AudioClip getStarSound;
 
-	void Start() {
+
+	// Use this for initialization
+	void Start () {
+		asrc = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
-		rb2d = GetComponent<Rigidbody2D> ();
-		rb2d.gravityScale = 1;
+		rb2d = GetComponent<Rigidbody2D>();
+		scoreText.text = score.ToString();
+		multiplierText.text = multiplier.ToString() + "X";
 	}
-
-	void Update() {
-
-		Move();
 	
-		DrawRaycast();
-		if(Input.GetKeyDown(KeyCode.Y)) {
-			Destroy(hearts[hearts.Count - 1].gameObject);
-			hearts.Remove(hearts[hearts.Count - 1].gameObject);
-		}
-		Debug.Log(isGrounded);
-	}
-
-	[SerializeField]void Shoot(){
-		Debug.LogError("hey");
-		Instantiate(bulletPrefab, nozzle.transform.position, new Quaternion(bulletPrefab.transform.rotation.x, bulletPrefab.transform.rotation.y,bulletPrefab.transform.rotation.z + transform.rotation.z, bulletPrefab.transform.rotation.w));
-	}
-
-	[SerializeField]void Jump() {
-		if(isGrounded) {
-			rb2d.AddForce(new Vector2(0,300));
+	// Update is called once per frame
+	void Update () {
+		if(Input.GetMouseButtonDown(0) && isGrounded) {
+			jump = true;
+			rb2d.velocity = new Vector2(0,jumpStrength);
 			isGrounded = false;
 		}
-	}
 
-	void Move() {
-		transform.Translate(new Vector2(movementSpeed * Time.deltaTime,0));
+		if(jump) {
+			anim.Play("Jumping");
+		}
+
+		transform.Translate(new Vector2(movementSpeed * Time.deltaTime, 0));
+
+		DrawRaycast();
 	}
 
 	void DrawRaycast() {
-		RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.75f), -Vector2.up);
-		Quaternion tRot = transform.rotation;
-		Vector3 eA = tRot.eulerAngles;
-		if(hit.transform.name == "UpBlock(Clone)") {
-			eA.z = 45;
-			rb2d.gravityScale = 0f;
-		} else if (hit.transform.name == "DownBlock(Clone)") {
-			eA.z = -45;
-			rb2d.gravityScale = 1f;
-		} else if (hit.transform.name == "Block(Clone)") {
-			eA.z = 0;
-			rb2d.gravityScale = 1f;
+		RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.585f), -Vector2.up);
+		if(hit.transform.name == "Lava(Clone)") {
+			if(getPoints) {
+				score += 1 * multiplier;
+				getPoints = false;
+				scoreText.text = score.ToString();
+			}
 		}
-		
-		tRot.eulerAngles = eA;
-		transform.rotation = tRot;
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		if(coll.transform.tag == "Block")  {
+		if(coll.transform.name == "Block(Clone)") {
+			jump = false;
 			isGrounded = true;
+			anim.Play("Running");
+			getPoints = true;
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D coll) {
+		if (coll.transform.name == "Lava(Clone)") {
+			movementSpeed = 0;
+			Destroy(this.gameObject);
+			Application.LoadLevel(2);
+			PlayerPrefs.SetInt("Score", score);
+		} 
+
+		if(coll.transform.name == "Star(Clone)") {
+			multiplier++;
+			Destroy(coll.gameObject);
+			movementSpeed += 0.5f;
+			jumpStrength -= 0.2f;
+			asrc.PlayOneShot(getStarSound);
+			multiplierText.text = multiplier.ToString() + "X";
 		}
 	}
 }

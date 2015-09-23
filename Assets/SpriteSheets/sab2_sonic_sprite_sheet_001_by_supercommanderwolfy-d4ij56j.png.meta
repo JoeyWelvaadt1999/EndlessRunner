@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: 3117d8001df2b4955a0886beb6f0afe2
+timeCreated: 1443004527
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Sprinting01
+    21300002: Sprinting02
+    21300004: Sprinting03
+    21300006: Sprinting04
+    21300008: Sprinting05
+    21300010: Sprinting06
+    21300012: Sprinting07
+    21300014: Sprinting08
+    21300016: Sprinting09
+    21300018: Jumping01
+    21300020: Jumping02
+    21300022: Jumping03
+    21300024: Jumping04
+    21300026: Jumping05
+    21300028: sab2_sonic_sprite_sheet_001_by_supercommanderwolfy-d4ij56j_46
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Sprinting01
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 714
+        width: 80
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprinting02
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 714
+        width: 91
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprinting03
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 714
+        width: 101
+        height: 117
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprinting04
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 715
+        width: 91
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprinting05
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 715
+        width: 81
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprinting06
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 715
+        width: 81
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprinting07
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 715
+        width: 91
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprinting08
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 714
+        width: 101
+        height: 114
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprinting09
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 715
+        width: 90
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jumping01
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 504
+        width: 78
+        height: 129
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jumping02
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 504
+        width: 84
+        height: 133
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jumping03
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 504
+        width: 83
+        height: 133
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jumping04
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 505
+        width: 79
+        height: 129
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jumping05
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 504
+        width: 79
+        height: 129
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: sab2_sonic_sprite_sheet_001_by_supercommanderwolfy-d4ij56j_46
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 0
+        width: 40
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
