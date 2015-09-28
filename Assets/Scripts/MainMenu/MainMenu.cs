@@ -5,14 +5,15 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 	[SerializeField]private Text usernameTextField;
 	[SerializeField]private Text usernamePlaceholderTextField;
-	bool nee = false;
 	private string uname;
+
 	public void ChangeScene(int scene) {
+
 		if(usernameTextField.text != "" && scene == 1) {
 			uname = usernameTextField.text;
 			PlayerPrefs.SetString("Username", uname);
 			Application.LoadLevel(scene);
-		} else {
+		}else {
 			usernamePlaceholderTextField.text = "Please enter username:";
 		}
 	}
@@ -22,6 +23,6 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void DestroyPlaceHolder() {
-		usernamePlaceholderTextField.enabled = nee;
+		usernamePlaceholderTextField.enabled = false;
 	}
 }

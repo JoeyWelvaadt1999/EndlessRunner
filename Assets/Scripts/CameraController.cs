@@ -10,8 +10,11 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(target.transform.position.x > transform.position.x)
-			transform.position = Vector3.MoveTowards(new Vector3(transform.position.x,0,-10), new Vector3(target.transform.position.x,0,-10), 1f);
+		if(target != null) {
+			if(target.transform.position.x > transform.position.x) {
+				transform.position = Vector3.MoveTowards(new Vector3(transform.position.x,0,-10), new Vector3(target.transform.position.x,0,-10), 1f);
+			}
+		}
 
 	}
 }

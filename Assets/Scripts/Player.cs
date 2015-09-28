@@ -10,17 +10,21 @@ public class Player : MonoBehaviour {
 	Animator anim;
 	Rigidbody2D rb2d;
 	Vector3 spawnPos;
+	SpawnUnits su;
+	EndScreen eso;
 	private int multiplier = 1;
 	private int score = 0;
-	private float jumpStrength = 3f;
-	private float movementSpeed = 5;
+	private float jumpStrength = 4f;
+	private float movementSpeed = 6;
 	[SerializeField]private Text multiplierText;
 	[SerializeField]private Text scoreText;
 	[SerializeField]private AudioClip getStarSound;
-
+	[SerializeField]private LevelSystem ls;
 
 	// Use this for initialization
 	void Start () {
+		eso = GameObject.FindObjectOfType<EndScreen>();
+		su = GameObject.FindObjectOfType<SpawnUnits>();
 		asrc = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
 		rb2d = GetComponent<Rigidbody2D>();
@@ -52,6 +56,7 @@ public class Player : MonoBehaviour {
 				score += 1 * multiplier;
 				getPoints = false;
 				scoreText.text = score.ToString();
+				isGrounded = false;
 			}
 		}
 	}
@@ -69,15 +74,20 @@ public class Player : MonoBehaviour {
 		if (coll.transform.name == "Lava(Clone)") {
 			movementSpeed = 0;
 			Destroy(this.gameObject);
-			Application.LoadLevel(2);
+			eso.ShowScreen = true;
 			PlayerPrefs.SetInt("Score", score);
+			ls.Experience = Mathf.FloorToInt(ls.Experience + score);
+			su.CancelInvoke();
 		} 
 
 		if(coll.transform.name == "Star(Clone)") {
 			multiplier++;
 			Destroy(coll.gameObject);
 			movementSpeed += 0.5f;
-			jumpStrength -= 0.2f;
+			su.SpawnRate = 0.05f;
+			su.CancelInvoke();
+			su.InvokeRepeating("SpawnPath", 0.0f, su.SpawnRate);
+			su.InvokeRepeating("SpawnStars", 0.0f, su.SpawnRate);
 			asrc.PlayOneShot(getStarSound);
 			multiplierText.text = multiplier.ToString() + "X";
 		}
