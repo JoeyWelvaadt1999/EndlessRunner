@@ -7,6 +7,7 @@ public class EndScreen : MonoBehaviour {
 	private bool showScreen = false;
 	private string uname;
 	private int score;
+	private float showScreenTime = 0;
 	GameObject eb;
 	GameObject et;
 	[SerializeField]private GameObject topEndPos;
@@ -15,8 +16,6 @@ public class EndScreen : MonoBehaviour {
 	[SerializeField]private GameObject sparkPrefab;
 	[SerializeField]private GameObject nozzle;
 	[SerializeField]private Text scoreText;
-	[SerializeField]private Text usernameTextField;
-	[SerializeField]private Text usernamePlaceholderTextField;
 
 
 	public bool ShowScreen{
@@ -27,6 +26,10 @@ public class EndScreen : MonoBehaviour {
 		}
 	}
 	// Use this for initialization
+	private EndScreen(){
+
+	}
+
 	void Start () {
 		et = GameObject.FindWithTag("EndTop");
 		eb = GameObject.FindWithTag("EndBottom");
@@ -35,32 +38,28 @@ public class EndScreen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		ScreenShow();
+	}
+
+	void ScreenShow() {
 		score = PlayerPrefs.GetInt("Score");
 		scoreText.text = "Score : " + score.ToString();
 		Vector3 etPos = et.transform.position;
 		Vector3 ebPos = eb.transform.position;
 		if(showScreen) {
+			showScreenTime += Time.deltaTime;
 			if(etPos == topEndPos.transform.position && ebPos == bottomEndPos.transform.position) {
+				endScreen.gameObject.SetActive(true);
+				Instantiate(sparkPrefab, nozzle.transform.position, Quaternion.identity);
+			}
+			
+			if(showScreenTime > 0.3f) {
 				endScreen.gameObject.SetActive(true);
 				Instantiate(sparkPrefab, nozzle.transform.position, Quaternion.identity);
 			}
 			et.transform.position = Vector3.Lerp(et.transform.position, topEndPos.transform.position, movementSpeed);
 			eb.transform.position = Vector3.Lerp(eb.transform.position, bottomEndPos.transform.position, movementSpeed);
 		}
-	}
-
-	public void ChangeScene(int scene) {
-		
-		if(usernameTextField.text != "" && scene == 1) {
-			uname = usernameTextField.text;
-			PlayerPrefs.SetString("Username", uname);
-		}else {
-			usernamePlaceholderTextField.text = "Please enter username:";
-		}
-	}
-	
-	public void DestroyPlaceHolder() {
-		usernamePlaceholderTextField.enabled = false;
 	}
 
 	[SerializeField] void Action(int action){
